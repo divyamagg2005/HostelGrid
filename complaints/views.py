@@ -68,17 +68,7 @@ def complaint_add(request):
             complaint = form.save(commit=False)
             complaint.student = student
             complaint.save()
-            
-            # Send email confirmation to student
-            try:
-                from hostel_management.email_utils import send_complaint_confirmation_email
-                if request.user.email:
-                    send_complaint_confirmation_email(complaint, request.user.email)
-            except Exception as e:
-                print(f"Email sending failed: {str(e)}")
-                # Continue even if email fails
-            
-            messages.success(request, 'Complaint submitted successfully! A confirmation email has been sent.')
+            messages.success(request, 'Complaint submitted successfully!')
             return redirect('complaint_list')
     else:
         form = ComplaintForm()

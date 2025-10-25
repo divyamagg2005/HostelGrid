@@ -65,7 +65,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div style="flex: 1; min-width: 0; padding-right: 10px;">
                         <h6 class="text-muted mb-1">Fees Collected</h6>
-                        <h2 class="mb-0" id="fees-amount" data-amount="{{ fees_collected }}" style="line-height: 1.2; word-break: break-word;">₹{{ fees_collected }}</h2>
+                        <h2 class="mb-0" id="fees-amount" style="white-space: nowrap; overflow: hidden; line-height: 1.2;">₹{{ fees_collected }}</h2>
                     </div>
                     <div class="text-success" style="font-size: 3rem; flex-shrink: 0;">
                         <i class="bi bi-cash-stack"></i>
@@ -193,63 +193,45 @@
 </div>
 
 <script>
-    // Format number with commas for better readability (e.g., 10200 → 10,200)
-    function formatNumberWithCommas(num) {
-        const number = parseFloat(num);
-        
-        if (isNaN(number)) return '0';
-        
-        // Format with commas (Indian numbering system)
-        return number.toLocaleString('en-IN', {
-            maximumFractionDigits: 0,
-            minimumFractionDigits: 0
-        });
-    }
-    
-    // Format and adjust fees amount display
+    // Dynamic font sizing for Fees Collected to keep card aligned
     function adjustFeesAmount() {
         const element = document.getElementById('fees-amount');
         if (!element) return;
         
-        const rawAmount = element.getAttribute('data-amount');
-        const formattedAmount = formatNumberWithCommas(rawAmount);
-        
-        // Update the element text with formatted amount (full number with commas)
-        element.textContent = '₹' + formattedAmount;
-        
         const container = element.parentElement;
+        const text = element.textContent;
+        const textLength = text.replace('₹', '').replace(/,/g, '').length;
         
-        // Start with default size
-        let fontSize = 2.0; // rem
+        // Reset to default size
+        let fontSize = 2.5; // Default rem size from stat-card h2
+        
+        // Adjust based on text length
+        if (textLength > 12) {
+            fontSize = 1.6;
+        } else if (textLength > 10) {
+            fontSize = 1.8;
+        } else if (textLength > 8) {
+            fontSize = 2.0;
+        } else if (textLength > 6) {
+            fontSize = 2.2;
+        }
+        
         element.style.fontSize = fontSize + 'rem';
         
-        // Adjust font size dynamically to fit the full number
+        // Fine-tune if still overflowing
         let iterations = 0;
-        while (element.scrollWidth > container.clientWidth && fontSize > 1.0 && iterations < 30) {
-            fontSize -= 0.05;
+        while (element.scrollWidth > container.clientWidth && fontSize > 1.2 && iterations < 20) {
+            fontSize -= 0.1;
             element.style.fontSize = fontSize + 'rem';
             iterations++;
         }
     }
     
-    // Debounce function to limit resize calls
-    function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-    
     // Run on page load
     document.addEventListener('DOMContentLoaded', adjustFeesAmount);
     
-    // Run on window resize with debounce
-    window.addEventListener('resize', debounce(adjustFeesAmount, 250));
+    // Run on window resize
+    window.addEventListener('resize', adjustFeesAmount);
 </script>
 
 {% endblock %}

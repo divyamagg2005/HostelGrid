@@ -36,11 +36,11 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <p style="color: var(--text-primary);"><strong>Name:</strong> {{ student.name }}</p>
-                        <p style="color: var(--text-primary);"><strong>Student ID:</strong> {{ student.studentid }}</p>
-                        <p style="color: var(--text-primary);"><strong>Gender:</strong> {{ student.gender|default:"Not specified" }}</p>
-                        <p style="color: var(--text-primary);"><strong>Department:</strong> {{ student.department|default:"Not specified" }}</p>
-                        <p style="color: var(--text-primary);"><strong>Date of Birth:</strong> 
+                        <p><strong>Name:</strong> {{ student.name }}</p>
+                        <p><strong>Student ID:</strong> {{ student.studentid }}</p>
+                        <p><strong>Gender:</strong> {{ student.gender|default:"Not specified" }}</p>
+                        <p><strong>Department:</strong> {{ student.department|default:"Not specified" }}</p>
+                        <p><strong>Date of Birth:</strong> 
                             {% if student_profile.date_of_birth %}
                                 {{ student_profile.date_of_birth|date:"M d, Y" }}
                             {% else %}
@@ -49,10 +49,10 @@
                         </p>
                     </div>
                     <div class="col-md-6">
-                        <p style="color: var(--text-primary);"><strong>Phone:</strong> {{ student.phone|default:"Not provided" }}</p>
-                        <p style="color: var(--text-primary);"><strong>Email:</strong> {{ user.email|default:"Not provided" }}</p>
-                        <p style="color: var(--text-primary);"><strong>Username:</strong> {{ user.username }}</p>
-                        <p style="color: var(--text-primary);"><strong>Address:</strong> 
+                        <p><strong>Phone:</strong> {{ student.phone|default:"Not provided" }}</p>
+                        <p><strong>Email:</strong> {{ user.email|default:"Not provided" }}</p>
+                        <p><strong>Username:</strong> {{ user.username }}</p>
+                        <p><strong>Address:</strong> 
                             {% if student_profile.address %}
                                 {{ student_profile.address|truncatewords:10 }}
                             {% else %}
@@ -64,24 +64,24 @@
                 
                 <!-- Parent Information -->
                 {% if student_profile.father_name or student_profile.mother_name %}
-                <hr style="border-color: rgba(255, 255, 255, 0.1);">
-                <h6 style="color: var(--text-secondary);" class="mb-3">Parent Information</h6>
+                <hr>
+                <h6 class="text-muted mb-3">Parent Information</h6>
                 <div class="row">
                     <div class="col-md-6">
-                        <p style="color: var(--text-primary);"><strong>Father's Name:</strong> {{ student_profile.father_name|default:"Not provided" }}</p>
-                        <p style="color: var(--text-primary);"><strong>Father's Phone:</strong> {{ student_profile.father_phone|default:"Not provided" }}</p>
+                        <p><strong>Father's Name:</strong> {{ student_profile.father_name|default:"Not provided" }}</p>
+                        <p><strong>Father's Phone:</strong> {{ student_profile.father_phone|default:"Not provided" }}</p>
                     </div>
                     <div class="col-md-6">
-                        <p style="color: var(--text-primary);"><strong>Mother's Name:</strong> {{ student_profile.mother_name|default:"Not provided" }}</p>
-                        <p style="color: var(--text-primary);"><strong>Mother's Phone:</strong> {{ student_profile.mother_phone|default:"Not provided" }}</p>
+                        <p><strong>Mother's Name:</strong> {{ student_profile.mother_name|default:"Not provided" }}</p>
+                        <p><strong>Mother's Phone:</strong> {{ student_profile.mother_phone|default:"Not provided" }}</p>
                     </div>
                 </div>
                 {% endif %}
                 
                 <!-- Edit Profile Button -->
-                <hr style="border-color: rgba(255, 255, 255, 0.1);">
-                <div class="text-center mt-3">
-                    <a href="{% url 'student_profile_edit' %}" class="btn btn-sm btn-primary">
+                <hr>
+                <div class="text-center">
+                    <a href="{% url 'student_profile_edit' %}" class="btn btn-outline-primary">
                         <i class="bi bi-pencil-square"></i> Edit Profile Details
                     </a>
                 </div>

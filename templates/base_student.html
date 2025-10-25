@@ -2,16 +2,8 @@
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}HostelGrid - Student Portal{% endblock %}</title>
-    
-    <!-- Favicon -->
-    {% load static %}
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon_io/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon_io/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon_io/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'favicon_io/site.webmanifest' %}">
-    <link rel="shortcut icon" href="{% static 'favicon_io/favicon.ico' %}">
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -101,7 +93,6 @@
             overflow-x: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             transition: background-color 0.3s ease, background-image 0.3s ease;
-            box-sizing: border-box;
         }
 
         /* Glassmorphism Sidebar */
@@ -114,17 +105,14 @@
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(8px) saturate(180%);
             -webkit-backdrop-filter: blur(8px) saturate(180%);
-            border-radius: 20px;
+            border-radius: 24px;
             border: 1px solid var(--glass-border);
             box-shadow: 0 4px 16px var(--shadow-color);
             z-index: 1000;
-            overflow: hidden;
-            padding: 18px;
+            overflow: visible;
+            padding: 24px 16px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
         }
 
         /* Sidebar Header with Logo and Theme Toggle */
@@ -132,8 +120,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
-            gap: 6px;
+            margin-bottom: 24px;
+            gap: 8px;
             width: 100%;
         }
 
@@ -153,7 +141,7 @@
         }
 
         .sidebar-brand svg {
-            height: 32px;
+            height: 28px;
             width: auto;
             max-width: 100%;
             flex-shrink: 1;
@@ -174,10 +162,10 @@
 
         /* Theme Toggle Button */
         .theme-toggle {
-            width: 36px;
-            height: 36px;
-            min-width: 36px;
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 12px;
             background: var(--hover-bg);
             border: 1px solid var(--glass-border);
             color: var(--text-primary);
@@ -200,48 +188,38 @@
             transform: scale(0.95);
         }
 
-        /* Navigation Container */
-        .sidebar-nav {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            overflow: hidden;
-            padding-right: 0;
-        }
-
         /* Navigation Items */
         .nav-section {
-            margin-bottom: 16px;
+            margin-bottom: 32px;
         }
 
         .nav-section-title {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-family: "Geist Mono", monospace;
             font-optical-sizing: auto;
             font-weight: 500;
             font-style: normal;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
+            letter-spacing: 1px;
             color: var(--text-muted);
-            padding: 0 12px;
-            margin-bottom: 8px;
+            padding: 0 16px;
+            margin-bottom: 12px;
         }
 
         .nav-item-glass {
-            margin-bottom: 4px;
+            margin-bottom: 8px;
         }
 
         .nav-link-glass {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 8px 12px;
+            gap: 12px;
+            padding: 14px 16px;
             color: var(--text-secondary);
             text-decoration: none;
-            border-radius: 10px;
+            border-radius: 12px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             font-family: "Geist Mono", monospace;
             font-optical-sizing: auto;
             font-weight: 500;
@@ -273,11 +251,9 @@
         }
 
         .nav-link-glass.active {
-            background: linear-gradient(135deg, var(--brand-yellow) 0%, #ffa500 100%);
-            color: var(--brand-dark);
-            font-weight: 600;
-            box-shadow: 0 3px 8px rgba(255, 215, 0, 0.3);
-            padding: 6px 10px;
+            background: var(--hover-bg);
+            color: var(--text-primary);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
         }
 
         .nav-link-glass.active::before {
@@ -285,92 +261,70 @@
         }
 
         .nav-link-glass i {
-            font-size: 1rem;
-            width: 20px;
+            font-size: 1.2rem;
+            width: 24px;
             text-align: center;
         }
 
         /* User Profile Section */
         .user-profile {
             margin-top: auto;
-            padding: 8px 12px;
+            padding: 16px;
             background: var(--glass-bg);
-            border-radius: 12px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             border: 1px solid var(--glass-border);
-            max-width: 100%;
-            overflow: hidden;
-            box-sizing: border-box;
-            min-height: 48px;
         }
 
         .user-profile:hover {
             background: var(--hover-bg);
-            border-color: var(--brand-yellow);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+            transform: scale(1.02);
         }
 
         .user-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--brand-yellow) 0%, #ffa500 100%);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--brand-yellow) 0%, #ffed4e 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--brand-dark);
-            font-size: 0.9rem;
+            color: #1a1a2e;
+            font-size: 1.5rem;
             font-weight: 700;
-            font-family: "Geist Mono", monospace;
         }
 
         .user-info {
             flex: 1;
             min-width: 0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
 
         .user-name {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-family: "Geist Mono", monospace;
             font-optical-sizing: auto;
-            font-weight: 600;
+            font-weight: 500;
             font-style: normal;
             color: var(--text-primary);
-            margin: 0 0 1px 0;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            line-height: 1.1;
-        }
-
-        .user-role {
-            font-size: 0.7rem;
-            color: var(--text-muted);
             margin: 0;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            line-height: 1.1;
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin: 0;
         }
 
         .user-dropdown {
             color: var(--text-muted);
             font-size: 1rem;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 20px;
-            height: 20px;
         }
 
         /* Main Content Area */
@@ -384,8 +338,6 @@
             max-width: calc(100vw - 360px);
             overflow-x: hidden;
             box-sizing: border-box;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
         }
 
         /* Container responsive */
@@ -465,8 +417,6 @@
             width: 100%;
             max-width: 100%;
             box-sizing: border-box;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
         }
 
         .card:hover {
@@ -1010,68 +960,19 @@
 
         /* Form controls */
         .form-control, .form-select {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             color: var(--text-primary);
             backdrop-filter: blur(10px);
             font-family: "Geist Mono", monospace;
             font-weight: 200;
-            max-width: 100%;
-            box-sizing: border-box;
-            overflow: hidden;
         }
 
         .form-control:focus, .form-select:focus {
-            background: rgba(255, 255, 255, 0.15);
+            background: var(--card-bg);
             border-color: #667eea;
             color: var(--text-primary);
-            box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.3);
-        }
-        
-        /* Windows-specific dropdown contrast fixes */
-        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-            .form-select {
-                background: rgba(255, 255, 255, 0.2) !important;
-                border: 2px solid rgba(255, 255, 255, 0.4) !important;
-                color: #ffffff !important;
-            }
-            
-            .form-select:focus {
-                background: rgba(255, 255, 255, 0.25) !important;
-                border-color: #667eea !important;
-                color: #ffffff !important;
-            }
-        }
-        
-        /* Chrome/Edge dropdown contrast fixes */
-        @media screen and (-webkit-min-device-pixel-ratio: 0) {
-            .form-select {
-                background: rgba(255, 255, 255, 0.12);
-                border: 2px solid rgba(255, 255, 255, 0.25);
-            }
-            
-            .form-select:focus {
-                background: rgba(255, 255, 255, 0.18);
-                border-color: #667eea;
-            }
-        }
-        
-        /* Dropdown specific fixes for Windows */
-        .form-select {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .form-select:focus {
-            z-index: 10;
-        }
-        
-        /* Ensure dropdown options don't overflow */
-        .form-select option {
-            max-width: 100%;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            white-space: normal;
+            box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
         }
 
         .form-control::placeholder {
@@ -1165,22 +1066,17 @@
         /* Mobile devices */
         @media (max-width: 768px) {
             .main-content {
-                margin-left: auto !important;
-                margin-right: auto !important;
+                margin-left: 10px;
+                margin-right: 10px;
                 margin-top: 70px;
-                padding: 0 10px 10px 10px !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                min-height: auto !important;
+                padding: 0;
+                width: calc(100vw - 20px);
+                max-width: calc(100vw - 20px);
             }
 
             .container {
-                padding-left: 10px !important;
-                padding-right: 10px !important;
-                max-width: 100% !important;
-                width: 100% !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
+                padding-left: 10px;
+                padding-right: 10px;
             }
 
             .glass-sidebar {
@@ -1196,66 +1092,28 @@
             .page-title {
                 font-size: 1.5rem;
                 margin-bottom: 16px;
-                word-wrap: break-word;
             }
 
             .card {
                 border-radius: 16px;
                 margin-bottom: 16px;
-                margin-left: auto !important;
-                margin-right: auto !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                height: auto !important;
-                min-height: auto !important;
             }
 
             .card-header {
-                padding: 12px;
-                flex-wrap: wrap;
-                gap: 8px;
+                padding: 16px;
             }
 
             .card-header h5 {
-                font-size: 0.9rem;
-                word-wrap: break-word;
-            }
-
-            .card-header .btn {
-                width: 100%;
-                margin-top: 8px;
+                font-size: 0.95rem;
             }
 
             .card-body {
-                padding: 12px;
+                padding: 16px;
                 overflow-x: auto;
-                overflow-y: visible;
-                word-wrap: break-word;
-                height: auto !important;
-                max-height: none !important;
-            }
-
-            .card-body p {
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-            }
-
-            /* Allow scrolling only for table containers */
-            .card-body .table-responsive {
-                max-height: 300px;
-                overflow-y: auto;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
             }
 
             .stat-card .card-body {
-                padding: 12px;
-                height: auto !important;
-                overflow: visible !important;
-            }
-
-            .stat-card {
-                height: auto !important;
+                padding: 16px;
             }
 
             /* Tables responsive */
@@ -1263,41 +1121,37 @@
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
                 max-width: 100%;
-                width: 100%;
-                margin: 0;
-                padding: 0;
+                margin: 0 -16px;
+                padding: 0 16px;
             }
 
             .table {
-                font-size: 0.8rem;
-                min-width: 600px;
-                width: 100%;
+                font-size: 0.875rem;
+                min-width: 100%;
             }
 
             .table thead th,
             .table tbody td {
-                padding: 6px 8px;
+                padding: 8px;
                 white-space: nowrap;
-                font-size: 0.75rem;
+                font-size: 0.8rem;
             }
 
             /* Buttons */
             .btn {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-                white-space: nowrap;
+                padding: 8px 16px;
+                font-size: 0.875rem;
             }
 
             .btn-sm {
-                padding: 5px 10px;
-                font-size: 0.75rem;
+                padding: 6px 12px;
+                font-size: 0.8rem;
             }
 
             /* Badge */
             .badge {
                 padding: 4px 8px;
-                font-size: 0.7rem;
-                white-space: nowrap;
+                font-size: 0.75rem;
             }
 
             /* Navigation */
@@ -1334,196 +1188,68 @@
 
             /* Reduce margins */
             .row {
-                margin-left: 0 !important;
-                margin-right: 0 !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                padding-left: 0 !important;
-                padding-right: 0 !important;
+                margin-left: -5px;
+                margin-right: -5px;
             }
 
             .col, .col-md-3, .col-md-4, .col-md-6, .col-md-8, .col-12,
             [class*="col-"] {
-                padding-left: 10px !important;
-                padding-right: 10px !important;
+                padding-left: 5px;
+                padding-right: 5px;
                 width: 100% !important;
                 max-width: 100% !important;
                 flex: 0 0 100% !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-            }
-
-            /* Fix d-flex on mobile */
-            .d-flex {
-                flex-wrap: wrap !important;
-            }
-
-            .d-flex.justify-content-between {
-                flex-direction: column !important;
-                align-items: stretch !important;
-            }
-
-            .d-flex.justify-content-between > * {
-                width: 100% !important;
-                margin-bottom: 8px;
-            }
-
-            /* Make inner rows responsive */
-            .card-body .row,
-            .card .row,
-            .row .row {
-                margin-left: -5px !important;
-                margin-right: -5px !important;
-                width: 100% !important;
-                max-width: 100% !important;
-            }
-
-            /* Force all columns inside cards to be full width on mobile */
-            .card-body .col-md-6,
-            .card-body .col-md-4,
-            .card-body .col-md-3,
-            .card-body .col-md-8,
-            .card-body .col-md-12,
-            .card .col-md-6,
-            .card .col-md-4,
-            .card .col-md-3,
-            .card .col-md-8,
-            .card .col-md-12 {
-                width: 100% !important;
-                max-width: 100% !important;
-                flex: 0 0 100% !important;
-                padding-left: 5px !important;
-                padding-right: 5px !important;
-            }
-
-            /* Fix any gutters */
-            .g-2,
-            .gx-2,
-            .row.g-2 {
-                --bs-gutter-x: 0.5rem !important;
             }
         }
 
         /* Small mobile devices */
         @media (max-width: 576px) {
             .main-content {
-                margin-left: auto !important;
-                margin-right: auto !important;
+                margin-left: 5px;
+                margin-right: 5px;
                 margin-top: 60px;
-                width: 100% !important;
-                max-width: 100% !important;
-                padding: 0 8px !important;
-            }
-
-            .container {
-                padding-left: 8px !important;
-                padding-right: 8px !important;
-                max-width: 100% !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
+                width: calc(100vw - 10px);
+                max-width: calc(100vw - 10px);
             }
 
             .page-title {
-                font-size: 1.15rem;
-                word-wrap: break-word;
-            }
-
-            .card {
-                width: 100% !important;
-                max-width: 100% !important;
-                border-radius: 12px;
-                margin-left: auto !important;
-                margin-right: auto !important;
-            }
-
-            .card-header {
-                padding: 10px;
+                font-size: 1.25rem;
             }
 
             .card-header h5 {
-                font-size: 0.85rem;
-                word-wrap: break-word;
+                font-size: 0.9rem;
             }
 
             .card-body {
-                padding: 10px;
-                font-size: 0.85rem;
-            }
-
-            .card-body p {
-                font-size: 0.8rem;
-                margin-bottom: 8px;
+                padding: 12px;
             }
 
             .stat-card .card-body {
-                padding: 10px;
+                padding: 12px;
             }
 
             .stat-card h2 {
-                font-size: 1.3rem;
+                font-size: 1.5rem;
             }
 
             .stat-card h6 {
-                font-size: 0.7rem;
+                font-size: 0.75rem;
             }
 
             /* Stack everything */
-            .d-flex {
-                flex-wrap: wrap !important;
-            }
-
             .d-flex.justify-content-between {
-                flex-direction: column !important;
-                gap: 8px;
-                align-items: stretch !important;
+                flex-direction: column;
+                gap: 10px;
             }
 
-            .d-flex.justify-content-between .btn,
-            .d-flex.justify-content-between > * {
-                width: 100% !important;
+            .d-flex.justify-content-between .btn {
+                width: 100%;
             }
 
             /* Alert spacing */
             .alert {
-                padding: 10px 12px;
-                font-size: 0.8rem;
-            }
-
-            /* Button groups */
-            .btn-group {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn-group .btn {
-                width: 100%;
-                margin-bottom: 5px;
-            }
-
-            /* Tables */
-            .table {
-                font-size: 0.75rem;
-                min-width: 500px;
-            }
-
-            .table thead th,
-            .table tbody td {
-                padding: 5px 6px;
-                font-size: 0.7rem;
-            }
-
-            /* Reduce row margins */
-            .row {
-                margin-left: 0 !important;
-                margin-right: 0 !important;
-            }
-
-            .col, .col-md-3, .col-md-4, .col-md-6, .col-md-8, .col-12,
-            [class*="col-"] {
-                padding-left: 8px !important;
-                padding-right: 8px !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
+                padding: 12px 16px;
+                font-size: 0.875rem;
             }
         }
 
@@ -1536,8 +1262,6 @@
             z-index: 999;
             width: 48px;
             height: 48px;
-            max-width: 48px;
-            max-height: 48px;
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(8px);
@@ -1549,45 +1273,10 @@
             cursor: pointer;
             font-size: 1.5rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            box-sizing: border-box;
-            overflow: hidden;
         }
 
         .mobile-menu-toggle:hover {
             background: rgba(255, 255, 255, 0.12);
-        }
-
-        /* Mobile theme toggle - always visible on mobile */
-        .mobile-theme-toggle {
-            display: none;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 999;
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid var(--glass-border);
-            color: var(--text-primary);
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.3rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .mobile-theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.15);
-            color: var(--brand-yellow);
-            transform: scale(1.05);
-        }
-
-        .mobile-theme-toggle:active {
-            transform: scale(0.95);
         }
 
         /* Overlay for mobile sidebar */
@@ -1612,88 +1301,17 @@
             .mobile-menu-toggle {
                 display: flex;
             }
-
-            .mobile-theme-toggle {
-                display: flex !important;
-            }
-
-            /* Hide the theme toggle inside sidebar on mobile */
-            .sidebar-header .theme-toggle {
-                display: none !important;
-            }
         }
 
-        /* Cross-platform compatibility fixes */
+        /* Prevent horizontal scroll */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
         * {
             box-sizing: border-box;
-        }
-        
-        html {
-            overflow-x: hidden;
-            width: 100%;
-            max-width: 100vw;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-        }
-        
-        body {
-            overflow-x: hidden;
-            width: 100%;
-            max-width: 100vw;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-        }
-        
-        /* Windows-specific rendering fixes */
-        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-            .main-content {
-                width: calc(100vw - 360px) !important;
-                max-width: calc(100vw - 360px) !important;
-            }
-            
-            /* Fix dropdown overflow on Windows */
-            .form-select {
-                max-width: 100% !important;
-                overflow: hidden !important;
-            }
-            
-            .mobile-menu-toggle {
-                max-width: 48px !important;
-                overflow: hidden !important;
-            }
-        }
-        
-        /* Chrome/Edge specific fixes */
-        @media screen and (-webkit-min-device-pixel-ratio: 0) {
-            .main-content {
-                width: calc(100vw - 360px);
-                max-width: calc(100vw - 360px);
-            }
-            
-            /* Fix dropdown overflow on Chrome/Edge */
-            .form-select {
-                max-width: 100%;
-                overflow: hidden;
-            }
-            
-            .mobile-menu-toggle {
-                max-width: 48px;
-                overflow: hidden;
-            }
-        }
-        
-        /* Additional Windows dropdown fixes */
-        .form-select {
-            position: relative;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        
-        .form-select option {
-            max-width: 100%;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         /* Ensure images are responsive */
@@ -1735,115 +1353,16 @@
             padding-left: 15px;
         }
 
-        /* iPhone 12 Pro and similar devices (390px width) */
-        @media (max-width: 428px) {
-            .main-content {
-                margin-left: auto !important;
-                margin-right: auto !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                padding: 0 8px !important;
-            }
-
-            .card {
-                width: 100% !important;
-                max-width: 100% !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-            }
-
-            .card-body .col-md-6 {
-                width: 100% !important;
-                max-width: 100% !important;
-            }
-
-            .btn-group-vertical .btn,
-            .btn-group .btn {
-                width: 100%;
-                margin: 3px 0;
-            }
-        }
-
-        /* High DPI / Retina Display specific fixes for desktop */
-        @media only screen and (min-width: 1024px) and (-webkit-min-device-pixel-ratio: 2),
-               only screen and (min-width: 1024px) and (min--moz-device-pixel-ratio: 2),
-               only screen and (min-width: 1024px) and (-o-min-device-pixel-ratio: 2/1),
-               only screen and (min-width: 1024px) and (min-device-pixel-ratio: 2),
-               only screen and (min-width: 1024px) and (min-resolution: 192dpi),
-               only screen and (min-width: 1024px) and (min-resolution: 2dppx) {
+        /* High DPI / Retina Display specific fixes */
+        @media only screen and (-webkit-min-device-pixel-ratio: 2),
+               only screen and (min--moz-device-pixel-ratio: 2),
+               only screen and (-o-min-device-pixel-ratio: 2/1),
+               only screen and (min-device-pixel-ratio: 2),
+               only screen and (min-resolution: 192dpi),
+               only screen and (min-resolution: 2dppx) {
             .main-content {
                 width: calc(100vw - 365px);
                 max-width: calc(100vw - 365px);
-            }
-        }
-
-        /* Global overflow prevention on mobile */
-        @media (max-width: 768px) {
-            html, body {
-                overflow-x: hidden !important;
-                width: 100vw !important;
-                max-width: 100vw !important;
-                position: relative;
-            }
-
-            /* Apply box-sizing to all elements */
-            * {
-                box-sizing: border-box !important;
-            }
-
-            /* Max width only for content elements, not structural ones */
-            .card, .card-body, .card-header,
-            .main-content > *,
-            .container > *,
-            .row > * {
-                max-width: 100% !important;
-            }
-
-            /* Ensure no elements cause horizontal scroll */
-            .container, .container-fluid, .row, [class*="col-"] {
-                overflow-x: hidden !important;
-            }
-
-            /* Better text handling */
-            p, span, div, h1, h2, h3, h4, h5, h6 {
-                word-wrap: break-word !important;
-                overflow-wrap: break-word !important;
-                hyphens: auto;
-                max-width: 100% !important;
-            }
-
-            /* Force buttons to be responsive */
-            .btn, a.btn {
-                max-width: 100% !important;
-                text-overflow: ellipsis;
-                overflow: hidden;
-            }
-
-            /* Ensure forms don't overflow */
-            input, select, textarea {
-                max-width: 100% !important;
-                box-sizing: border-box !important;
-            }
-
-            /* Override any inline styles that might cause overflow */
-            [style*="width"] {
-                width: auto !important;
-                max-width: 100% !important;
-            }
-
-            /* Fix d-flex inside cards */
-            .card .d-flex {
-                flex-wrap: wrap !important;
-            }
-
-            .card .d-flex.justify-content-between {
-                flex-direction: column !important;
-                align-items: flex-start !important;
-            }
-
-            /* Ensure text doesn't overflow */
-            strong, b {
-                word-break: break-word !important;
             }
         }
     </style>
@@ -1854,11 +1373,6 @@
     <!-- Mobile Menu Toggle -->
     <div class="mobile-menu-toggle" onclick="toggleSidebar()">
         <i class="bi bi-list"></i>
-    </div>
-
-    <!-- Mobile Theme Toggle -->
-    <div class="mobile-theme-toggle" onclick="toggleTheme()" title="Toggle theme">
-        <i class="bi bi-sun-fill" id="mobile-theme-icon"></i>
     </div>
 
     <!-- Sidebar Overlay for mobile -->
@@ -1902,43 +1416,41 @@
         </div>
 
         <!-- Navigation -->
-        <nav class="sidebar-nav">
-            <div class="nav-section">
-                <div class="nav-section-title">Main</div>
-                <div class="nav-item-glass">
-                    <a href="{% url 'dashboard' %}" class="nav-link-glass {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
-                        <i class="bi bi-speedometer2"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </div>
+        <div class="nav-section">
+            <div class="nav-section-title">Main</div>
+            <div class="nav-item-glass">
+                <a href="{% url 'dashboard' %}" class="nav-link-glass {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Dashboard</span>
+                </a>
             </div>
+        </div>
 
-            <!-- Student Features -->
-            <div class="nav-section">
-                <div class="nav-section-title">Student</div>
-                <div class="nav-item-glass">
-                    <a href="{% url 'complaint_list' %}" class="nav-link-glass {% if 'complaint' in request.path %}active{% endif %}">
-                        <i class="bi bi-exclamation-circle"></i>
-                        <span>My Complaints</span>
-                    </a>
-                </div>
-                <div class="nav-item-glass">
-                    <a href="{% url 'payment_list' %}" class="nav-link-glass {% if 'payment' in request.path and 'make' not in request.path %}active{% endif %}">
-                        <i class="bi bi-credit-card"></i>
-                        <span>My Payments</span>
-                    </a>
-                </div>
-                <div class="nav-item-glass">
-                    <a href="{% url 'student_payment_make' %}" class="nav-link-glass {% if 'make' in request.path %}active{% endif %}">
-                        <i class="bi bi-wallet2"></i>
-                        <span>Make Payment</span>
-                    </a>
-                </div>
+        <!-- Student Features -->
+        <div class="nav-section">
+            <div class="nav-section-title">Student</div>
+            <div class="nav-item-glass">
+                <a href="{% url 'complaint_list' %}" class="nav-link-glass {% if 'complaint' in request.path %}active{% endif %}">
+                    <i class="bi bi-exclamation-circle"></i>
+                    <span>My Complaints</span>
+                </a>
             </div>
-        </nav>
+            <div class="nav-item-glass">
+                <a href="{% url 'payment_list' %}" class="nav-link-glass {% if 'payment' in request.path and 'make' not in request.path %}active{% endif %}">
+                    <i class="bi bi-credit-card"></i>
+                    <span>My Payments</span>
+                </a>
+            </div>
+            <div class="nav-item-glass">
+                <a href="{% url 'student_payment_make' %}" class="nav-link-glass {% if 'make' in request.path %}active{% endif %}">
+                    <i class="bi bi-wallet2"></i>
+                    <span>Make Payment</span>
+                </a>
+            </div>
+        </div>
 
         <!-- User Profile -->
-        <div class="user-profile" id="logout-profile">
+        <div class="user-profile" onclick="window.location.href='{% url 'logout' %}'">
             <div class="user-avatar">
                 {{ user.username|slice:":1"|upper }}
             </div>
@@ -1978,16 +1490,12 @@
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             
-            // Update both icons (sidebar and mobile)
+            // Update icon
             const icon = document.getElementById('theme-icon');
-            const mobileIcon = document.getElementById('mobile-theme-icon');
-            
             if (newTheme === 'dark') {
-                if (icon) icon.className = 'bi bi-sun-fill';
-                if (mobileIcon) mobileIcon.className = 'bi bi-sun-fill';
+                icon.className = 'bi bi-sun-fill';
             } else {
-                if (icon) icon.className = 'bi bi-moon-fill';
-                if (mobileIcon) mobileIcon.className = 'bi bi-moon-fill';
+                icon.className = 'bi bi-moon-fill';
             }
         }
 
@@ -1997,14 +1505,10 @@
             document.documentElement.setAttribute('data-theme', savedTheme);
             
             const icon = document.getElementById('theme-icon');
-            const mobileIcon = document.getElementById('mobile-theme-icon');
-            
             if (savedTheme === 'dark') {
-                if (icon) icon.className = 'bi bi-sun-fill';
-                if (mobileIcon) mobileIcon.className = 'bi bi-sun-fill';
+                icon.className = 'bi bi-sun-fill';
             } else {
-                if (icon) icon.className = 'bi bi-moon-fill';
-                if (mobileIcon) mobileIcon.className = 'bi bi-moon-fill';
+                icon.className = 'bi bi-moon-fill';
             }
         });
 
@@ -2040,57 +1544,6 @@
                 overlay.classList.remove('active');
             }
         });
-
-        // Logout profile click handler
-        document.addEventListener('DOMContentLoaded', function() {
-            const logoutProfile = document.getElementById('logout-profile');
-            if (logoutProfile) {
-                logoutProfile.addEventListener('click', function() {
-                    window.location.href = '{% url "logout" %}';
-                });
-            }
-        });
-        
-        // Windows-specific layout fixes
-        function fixWindowsLayout() {
-            const mainContent = document.querySelector('.main-content');
-            if (mainContent) {
-                const sidebar = document.querySelector('.glass-sidebar');
-                if (sidebar) {
-                    const sidebarWidth = sidebar.offsetWidth + 40; // 40px for margins
-                    const availableWidth = window.innerWidth - sidebarWidth;
-                    mainContent.style.width = availableWidth + 'px';
-                    mainContent.style.maxWidth = availableWidth + 'px';
-                }
-            }
-        }
-        
-        // Apply fixes on load and resize
-        document.addEventListener('DOMContentLoaded', fixWindowsLayout);
-        window.addEventListener('resize', fixWindowsLayout);
-        
-        // Fix dropdown positioning on Windows
-        function fixDropdowns() {
-            const selects = document.querySelectorAll('.form-select');
-            selects.forEach(select => {
-                select.addEventListener('focus', function() {
-                    const rect = this.getBoundingClientRect();
-                    const viewportWidth = window.innerWidth;
-                    
-                    // If dropdown would overflow, adjust positioning
-                    if (rect.right > viewportWidth - 20) {
-                        this.style.maxWidth = (viewportWidth - rect.left - 40) + 'px';
-                    }
-                });
-                
-                select.addEventListener('blur', function() {
-                    this.style.maxWidth = '';
-                });
-            });
-        }
-        
-        // Apply dropdown fixes
-        document.addEventListener('DOMContentLoaded', fixDropdowns);
     </script>
     
     {% block extra_js %}{% endblock %}

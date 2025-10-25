@@ -4,78 +4,27 @@
 
 {% block content %}
 <div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card border-success shadow">
+    <div class="col-md-6">
+        <div class="card">
             <div class="card-header bg-success text-white">
-                <h5 class="mb-0"><i class="bi bi-check-circle-fill"></i> Mark Complaint as Resolved</h5>
+                <h5 class="mb-0"><i class="bi bi-check-circle"></i> Mark Complaint as Resolved</h5>
             </div>
-            <div class="card-body bg-light">
-                <div class="alert alert-success border-success" role="alert">
-                    <h5 class="alert-heading">
-                        <i class="bi bi-patch-check-fill"></i> Confirm Resolution
-                    </h5>
-                    <p class="mb-0 text-dark">Are you sure this complaint has been <strong>resolved</strong> and can be closed?</p>
+            <div class="card-body">
+                <p>Are you sure you want to mark this complaint as resolved?</p>
+                <div class="alert alert-info">
+                    <strong>Student:</strong> {{ complaint.student.name }}<br>
+                    <strong>Subject:</strong> {{ complaint.subject }}<br>
+                    <strong>Category:</strong> {{ complaint.get_category_display }}
                 </div>
+                <p class="text-muted"><small><i class="bi bi-info-circle"></i> This complaint will be removed from the system once marked as resolved.</small></p>
                 
-                <div class="card mb-3">
-                    <div class="card-header bg-white">
-                        <h6 class="mb-0 text-dark"><i class="bi bi-file-text"></i> Complaint Details</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="row mb-2">
-                            <div class="col-4"><strong class="text-dark">Complaint ID:</strong></div>
-                            <div class="col-8"><span class="text-dark">#{{ complaint.id }}</span></div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-4"><strong class="text-dark">Student:</strong></div>
-                            <div class="col-8"><span class="text-dark">{{ complaint.student.name }}</span></div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-4"><strong class="text-dark">Category:</strong></div>
-                            <div class="col-8">
-                                <span class="badge bg-secondary">{{ complaint.get_category_display }}</span>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-4"><strong class="text-dark">Subject:</strong></div>
-                            <div class="col-8"><span class="text-dark">{{ complaint.subject }}</span></div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-4"><strong class="text-dark">Description:</strong></div>
-                            <div class="col-8"><span class="text-dark">{{ complaint.description }}</span></div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-4"><strong class="text-dark">Current Status:</strong></div>
-                            <div class="col-8">
-                                {% if complaint.status == 'pending' %}
-                                <span class="badge bg-warning text-dark">Pending</span>
-                                {% elif complaint.status == 'in_progress' %}
-                                <span class="badge bg-info">In Progress</span>
-                                {% else %}
-                                <span class="badge bg-success">Resolved</span>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4"><strong class="text-dark">Submitted:</strong></div>
-                            <div class="col-8"><span class="text-dark">{{ complaint.created_at|date:"F d, Y \a\t h:i A" }}</span></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="alert alert-info border-info mb-3">
-                    <i class="bi bi-info-circle-fill"></i> 
-                    <strong class="text-dark">Note:</strong> 
-                    <span class="text-dark">Once marked as resolved, this complaint will be removed from the active complaints list. This action cannot be undone.</span>
-                </div>
-                
-                <form method="post" class="d-flex gap-2">
+                <form method="post">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-success btn-lg">
-                        <i class="bi bi-check-circle-fill"></i> Yes, Mark as Resolved
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-check-circle"></i> Yes, Mark as Resolved
                     </button>
-                    <a href="{% url 'complaint_list' %}" class="btn btn-secondary btn-lg">
-                        <i class="bi bi-x-circle-fill"></i> Cancel
+                    <a href="{% url 'complaint_list' %}" class="btn btn-secondary">
+                        <i class="bi bi-x-circle"></i> Cancel
                     </a>
                 </form>
             </div>

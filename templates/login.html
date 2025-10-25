@@ -5,14 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - HostelGrid</title>
     
-    <!-- Favicon -->
-    {% load static %}
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon_io/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon_io/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon_io/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'favicon_io/site.webmanifest' %}">
-    <link rel="shortcut icon" href="{% static 'favicon_io/favicon.ico' %}">
-    
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -242,83 +234,6 @@
             text-decoration: underline;
         }
         
-        .alert-container {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
-            width: 90%;
-            max-width: 500px;
-            animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -20px);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, 0);
-            }
-        }
-        
-        .alert-notification {
-            background: rgba(239, 68, 68, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            padding: 16px 20px;
-            box-shadow: 0 8px 24px rgba(239, 68, 68, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: white;
-            font-weight: 500;
-            position: relative;
-        }
-        
-        .alert-notification.success {
-            background: rgba(16, 185, 129, 0.95);
-            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
-        }
-        
-        .alert-notification.warning {
-            background: rgba(245, 158, 11, 0.95);
-            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
-        }
-        
-        .alert-icon {
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-        
-        .alert-content {
-            flex: 1;
-        }
-        
-        .alert-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 0;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: background 0.2s;
-        }
-        
-        .alert-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
         .floating-elements {
             position: absolute;
             top: 0;
@@ -397,21 +312,6 @@
     </style>
 </head>
 <body>
-    <!-- Error/Success Notifications -->
-    {% if messages %}
-    <div class="alert-container" id="alertContainer">
-        {% for message in messages %}
-        <div class="alert-notification {% if message.tags == 'error' %}{% elif message.tags == 'success' %}success{% elif message.tags == 'warning' %}warning{% endif %}">
-            <i class="bi {% if message.tags == 'error' %}bi-exclamation-circle{% elif message.tags == 'success' %}bi-check-circle{% else %}bi-info-circle{% endif %} alert-icon"></i>
-            <div class="alert-content">{{ message }}</div>
-            <button class="alert-close" onclick="closeAlert()">
-                <i class="bi bi-x"></i>
-            </button>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-
     <div class="login-container">
         <!-- Left Section - Login Form -->
         <div class="left-section">
@@ -572,40 +472,6 @@
                 passwordIcon.className = 'bi bi-eye';
             }
         }
-        
-        // Alert notification functions
-        function closeAlert() {
-            const alertContainer = document.getElementById('alertContainer');
-            if (alertContainer) {
-                alertContainer.style.animation = 'slideUp 0.3s ease-out forwards';
-                setTimeout(() => {
-                    alertContainer.remove();
-                }, 300);
-            }
-        }
-        
-        // Auto-hide alert after 5 seconds
-        document.addEventListener('DOMContentLoaded', function() {
-            const alertContainer = document.getElementById('alertContainer');
-            if (alertContainer) {
-                setTimeout(() => {
-                    closeAlert();
-                }, 5000);
-            }
-        });
     </script>
-    
-    <style>
-        @keyframes slideUp {
-            from {
-                opacity: 1;
-                transform: translate(-50%, 0);
-            }
-            to {
-                opacity: 0;
-                transform: translate(-50%, -20px);
-            }
-        }
-    </style>
 </body>
 </html>
